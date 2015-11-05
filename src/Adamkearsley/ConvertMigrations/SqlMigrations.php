@@ -170,8 +170,17 @@ public function down()
                     case 'bigint' :
                         $method = 'bigInteger';
                         break;
-                    case 'samllint' :
+                    case 'blob' :
+                        $method = 'binary';
+                        break;
+                    case 'boolean' :
+                        $method = 'boolean';
+                        break;
+                    case 'smallint' :
                         $method = 'smallInteger';
+                        break;
+                    case 'mediumint' :
+                        $method = 'mediumInteger';
                         break;
                     case 'char' :
                     case 'varchar' :
@@ -186,6 +195,14 @@ public function down()
                         $para = strpos($values->Type, '(');
                         $numbers = ", " . substr($values->Type, $para + 1, -1);
                         $method = 'decimal';
+                        break;
+                    case 'double' :
+                        $para = strpos($values->Type, '(');
+                        $numbers = ", " . substr($values->Type, $para + 1, -1);
+                        $method = 'double';
+                        break;
+                    case 'integer' :
+                        $method = 'integer';
                         break;
                     case 'tinyint' :
                         if ($values->Type == 'tinyint(1)') {
@@ -203,8 +220,14 @@ public function down()
                     case 'datetime' :
                         $method = 'dateTime';
                         break;
+                    case 'time' :
+                        $method = 'time';
+                        break;
                     case 'mediumtext' :
                         $method = 'mediumtext';
+                        break;
+                    case 'longtext' :
+                        $method = 'longText';
                         break;
                     case 'text' :
                         $method = 'text';
